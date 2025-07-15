@@ -1,1 +1,0 @@
-# Quiz generation service
