@@ -1,0 +1,49 @@
+.bg-light {
+  background: #f8fafc;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.py-4 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1200px;
+}
+
+.editor-section {
+  flex-basis: 75%;
+  flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-section {
+  flex-basis: 25%;
+  min-width: 320px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar-section {
+    max-width: 100%;
+    min-width: 0;
+    flex-basis: auto;
+  }
+}
