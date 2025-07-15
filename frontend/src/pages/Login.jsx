@@ -9,6 +9,7 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -24,6 +25,7 @@ const Login = () => {
         [name]: ''
       }));
     }
+    setApiError('');
   };
 
   const validateForm = () => {
@@ -41,33 +43,52 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError('');
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const response = await fetch('http://localhost:4000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: formData.email, // backend expects username
+          password: formData.password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && (data.success || data.message === 'Login successful')) {
+        // You can store user info/token here if needed
+        navigate('/');
+      } else {
+        setApiError(data.error || data.message || 'Login failed');
+      }
+    } catch (err) {
+      setApiError('Unable to connect to server');
+    } finally {
       setIsSubmitting(false);
-      // Redirect or show success
-      navigate('/');
-    }, 1500);
+    }
   };
 
   return (
     <div className="login-container">
-      <div className="login-heading-bg">
-        <div className="login-header">
-          <img
-            src="/logo.png"
-            alt="Smart Text Analyzer Logo"
-            className="login-logo"
-          />
-          <span className="login-title">
-            Smart Text Analyzer
-          </span>
-        </div>
+      <div className="login-header">
+        <img
+          src="/logo.png"
+          alt="Smart Text Analyzer Logo"
+          className="login-logo"
+        />
+        <span className="login-title">
+          Smart Text Analyzer
+        </span>
       </div>
       <div className="login-card">
         <div className="card-header">
@@ -75,6 +96,11 @@ const Login = () => {
           <p>Welcome back! Please sign in to continue.</p>
         </div>
         <form className="login-form" onSubmit={handleSubmit}>
+          {apiError && (
+            <div className="error-message" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              {apiError}
+            </div>
+          )}
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input

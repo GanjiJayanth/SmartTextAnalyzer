@@ -835,3 +835,9 @@ button:focus {
   gap: 30px;
   z-index: 2;
 }
+.home-background {
+  min-height: 100vh;
+  width: 100vw;
+  background: url('/back.png') center center/cover no-repeat;
+  background-attachment: fixed;
+}

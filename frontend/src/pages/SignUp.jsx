@@ -13,6 +13,7 @@ const SignupPage = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [apiError, setApiError] = useState('');
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -29,6 +30,7 @@ const SignupPage = () => {
         [name]: ''
       }));
     }
+    setApiError('');
   };
 
   const validateForm = () => {
@@ -75,19 +77,37 @@ const SignupPage = () => {
     }
 
     setIsSubmitting(true);
+    setApiError('');
 
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setShowSuccess(true);
-      setFormData({
-        fullName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+      const response = await fetch('http://localhost:4000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: formData.email, // backend expects username
+          password: formData.password,
+          email: formData.email,
+          fullName: formData.fullName
+        })
       });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setShowSuccess(true);
+        setFormData({
+          fullName: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+      } else {
+        setApiError(data.error || data.message || 'Signup failed');
+      }
     } catch (error) {
-      console.error('Signup failed:', error);
+      setApiError('Unable to connect to server');
     } finally {
       setIsSubmitting(false);
     }
@@ -102,7 +122,10 @@ const SignupPage = () => {
           <p>Your account has been created successfully.</p>
           <button
             className="btn btn-primary"
-            onClick={() => setShowSuccess(false)}
+            onClick={() => {
+              setShowSuccess(false);
+              navigate('/login');
+            }}
           >
             Continue
           </button>
@@ -131,6 +154,11 @@ const SignupPage = () => {
         </div>
 
         <form className="signup-form" onSubmit={handleSubmit}>
+          {apiError && (
+            <div className="error-message" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              {apiError}
+            </div>
+          )}
           <div className="form-group">
             <label htmlFor="fullName">Full Name</label>
             <input

@@ -256,7 +256,7 @@ const Home = () => {
         <Hero />
         <Features />
       </main>
-      <Footer />
+      <Footer />  
     </div>
   );
 };
