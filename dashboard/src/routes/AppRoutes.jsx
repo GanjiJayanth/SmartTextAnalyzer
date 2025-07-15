@@ -5,10 +5,10 @@ import { Routes, Route } from "react-router-dom";
 import Editor from "../pages/Editor";
 import Upload from "../pages/Upload";
 import Dashboard from "../pages/Dashboard";
-import Settings from "../pages/Settings";
 import Page404 from "../pages/Page404";
 import Summarizer from "../pages/Summarizer";
 import Plagiarism from "../pages/Plagiarism";
+import Profile from "../pages/Settings";
 
 // Auth Pages
 
@@ -20,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/dashboard/upload/*" element={<Upload />} />
       <Route path="/dashboard/summarizer" element={<Summarizer/>} />
       <Route path="/dashboard/plagiarism" element={<Plagiarism />} />
+      <Route path="/dashboard/settings" element={<Profile/>} />
       <Route path="*" element={<Page404/>} />
     </Routes>
   );

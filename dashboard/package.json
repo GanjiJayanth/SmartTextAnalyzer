@@ -12,7 +12,7 @@
   "dependencies": {
     "@lexical/react": "^0.32.1",
     "@tailwindcss/vite": "^4.1.11",
-    "bootstrap": "^5.3.7",
+    "axios": "^1.10.0",
     "draft-js": "^0.11.7",
     "fbjs": "^3.0.5",
     "lexical": "^0.32.1",

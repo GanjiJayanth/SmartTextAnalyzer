@@ -16,7 +16,7 @@ function Sidebar() {
         className="sidebar-toggle-btn"
         style={{
           position: "absolute",
-          top: "1.5rem",
+          top: "1.3rem",
           right: "24px",
           zIndex: 10,
           background: "#e5e7eb",
@@ -45,11 +45,8 @@ function Sidebar() {
         <div className="flex items-center">
           {!minimized && (
             <>
-              <span className="text-xl font-semibold text-gray-800">
-                grammarly
-              </span>
-              <span className="ml-2 px-2 py-0.5 text-xs font-semibold text-green-700 bg-green-100 rounded-md">
-                Free
+              <span className="text-base font-semibold text-gray-800">
+                Smart Text Analyzer
               </span>
             </>
           )}
@@ -61,7 +58,7 @@ function Sidebar() {
         <ul>
           <li>
             <Link
-              className={`flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-r-full ${
+              className={`flex items-center px-4 py-2 text-sm font-medium text-gray-700  hover:bg-gray-50 ${
                 minimized ? "justify-center" : ""
               }`}
               to="/"

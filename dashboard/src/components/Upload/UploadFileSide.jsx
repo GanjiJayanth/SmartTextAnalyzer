@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./UploadFileSide.css";
 
-function UploadFileSide() {
+function UploadFileSide({ setPdfFile }) {
   const fileInputRef = useRef(null);
   const [fileName, setFileName] = useState(null);
+  const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -12,19 +14,42 @@ function UploadFileSide() {
   };
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+      if (fileExtension !== "pdf") {
+        alert("Only PDF files are allowed.");
+        return;
+      }
+
+      setFileName(selectedFile.name);
+      setFile(selectedFile);
+      setPdfFile(selectedFile); // Optional: pass file to parent
     }
   };
 
-  const handleContinue = () => {
-    if (!fileName) {
+  const handleContinue = async () => {
+    if (!file) {
       alert("Please select a file first.");
       return;
     }
-    // Redirect to another screen
-    navigate("document");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await axios.post("http://127.0.0.1:4000/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Upload success:", response.data);
+      navigate("document");
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Upload failed. Please try again.");
+    }
   };
 
   return (
@@ -38,6 +63,7 @@ function UploadFileSide() {
             </p>
           </div>
         </div>
+
         <div className="upload-section">
           <div className="upload-box">
             <div className="upload-info">
@@ -49,28 +75,25 @@ function UploadFileSide() {
 
             <input
               type="file"
-              accept=".pdf,.docx,.txt"
+              accept=".pdf"
               onChange={handleFileChange}
               ref={fileInputRef}
               style={{ display: "none" }}
             />
 
             <button onClick={handleButtonClick} className="upload-button">
-              <span className="truncate">Select a file</span>
+              <span className="truncate">Select a PDF file</span>
             </button>
 
-            {fileName && (
-              <p className="file-selected">{fileName} selected</p>
-            )}
+            {fileName && <p className="file-selected">{fileName} selected</p>}
 
             <button onClick={handleContinue} className="upload-button btn-primary">
               Upload & Continue
             </button>
           </div>
         </div>
-        <p className="file-types">
-          Supported file types: PDF, DOCX, TXT
-        </p>
+
+        <p className="file-types">Supported file types: PDF only</p>
       </div>
     </div>
   );

@@ -82,8 +82,8 @@
   max-width: 480px;
   height: 40px;
   padding: 0 16px;
-  background-color: #f4f1f1;
-  color: #171212;
+  background-color: #2563eb; /* Replace with your choice */
+  color: #ffffff;
   font-size: 14px;
   font-weight: bold;
   border: none;
@@ -91,6 +91,11 @@
   cursor: pointer;
   text-align: center;
   overflow: hidden;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.upload-button:hover {
+  background-color: #1d4ed8; /* Darker blue on hover */
 }
 
 .truncate {

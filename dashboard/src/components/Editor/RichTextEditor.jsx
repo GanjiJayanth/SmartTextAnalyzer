@@ -1,23 +1,38 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import {
   Editor,
   EditorState,
   RichUtils,
   getDefaultKeyBinding,
+  ContentState,
 } from "draft-js";
+
 import "draft-js/dist/Draft.css";
 import "./RichEditor.css";
 
-const RichTextEditor = () => {
+const RichTextEditor = ({ inputText, setInputText }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [textCount, setTextCount] = useState(0);
   const editorRef = useRef(null);
+
+  // Sync editorState with inputText changes from outside (e.g., suggestions)
+  useEffect(() => {
+    const plainText = editorState.getCurrentContent().getPlainText();
+    if (inputText !== plainText) {
+      const contentState = ContentState.createFromText(inputText || "");
+      setEditorState(EditorState.createWithContent(contentState));
+      setTextCount(inputText.length);
+    }
+    // eslint-disable-next-line
+  }, [inputText]);
 
   const focus = () => editorRef.current && editorRef.current.focus();
 
   const onChange = (newState) => {
     setEditorState(newState);
     const plainText = newState.getCurrentContent().getPlainText();
-    console.log("Updated Text:", plainText);
+    setInputText(plainText);
+    setTextCount(plainText.length);
   };
 
   const handleKeyCommand = useCallback((command, editorState) => {
@@ -44,15 +59,12 @@ const RichTextEditor = () => {
   const toggleInlineStyle = (inlineStyle) =>
     onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
 
-  const logPlainText = () => {
-    const plainText = editorState.getCurrentContent().getPlainText();
-    console.log("Text:", plainText);
-  };
-
   let className = "RichEditor-editor";
   const contentState = editorState.getCurrentContent();
-  if (!contentState.hasText() &&
-      contentState.getBlockMap().first().getType() !== "unstyled") {
+  if (
+    !contentState.hasText() &&
+    contentState.getBlockMap().first().getType() !== "unstyled"
+  ) {
     className += " RichEditor-hidePlaceholder";
   }
 
@@ -80,6 +92,9 @@ const RichTextEditor = () => {
           ref={editorRef}
           spellCheck={true}
         />
+      </div>
+      <div className="text-right text-sm text-gray-500 mt-1">
+        {textCount} / 10000
       </div>
     </div>
   );

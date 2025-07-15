@@ -1,42 +1,44 @@
+import { Link } from "react-router-dom";
+
 function Page404() {
   return (
-    <main class="flex-grow flex items-center justify-center text-center">
-      <div class="text-center px-4">
-        <h1 class="text-4xl font-semibold text-gray-800 mb-6">
+    <main className="min-h-screen flex items-center justify-center text-center">
+      <div className="text-center px-4">
+        <h1 className="text-4xl font-semibold text-gray-800 mb-6">
           Sorry, we couldn't find that page
         </h1>
-        <p class="text-gray-600 mb-10 text-lg">
+        <p className="text-gray-600 mb-10 text-lg">
           We can't get you there from here, but here are some options that
           <br />
           might help you get back on track:
         </p>
-        <ul class="space-y-5 inline-block text-left">
+        <ul className="space-y-5 inline-block text-left">
           <li>
-            <a
-              class="flex items-center text-red-500 hover:text-red-600 transition-colors"
-              href="#"
+            <Link
+              className="flex items-center text-red-500 hover:text-red-600 transition-colors"
+              to="/"
             >
-              <span class="material-icons mr-3">home</span>
+              <span className="material-icons mr-3">home</span>
               Go to the Homepage
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              class="flex items-center text-red-500 hover:text-red-600 transition-colors"
-              href="#"
+            <Link
+              className="flex items-center text-red-500 hover:text-red-600 transition-colors"
+              to="/"
             >
-              <span class="material-icons mr-3">arrow_back</span>
+              <span className="material-icons mr-3">arrow_back</span>
               Return to Previous Page
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              class="flex items-center text-red-500 hover:text-red-600 transition-colors"
-              href="#"
+            <Link
+              className="flex items-center text-red-500 hover:text-red-600 transition-colors"
+              to="/"
             >
-              <span class="material-icons mr-3">support_agent</span>
+              <span className="material-icons mr-3">support_agent</span>
               Contact Support
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
