@@ -28,11 +28,7 @@ function AISidebar() {
           "x-api-key": "AIzaSyByicleeKHnDKL6iaHdnkEUh10w0wSvfUs", // Replace with real API key if needed
         },
       });
-<<<<<<< HEAD
       console.log(response)
-=======
-
->>>>>>> f4effe2260fcd82a1c32f4723c9e7cc35fa492f9
       // Add AI's reply
       const aiMessage = {
         sender: "ai",
