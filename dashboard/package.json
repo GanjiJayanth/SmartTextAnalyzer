@@ -16,6 +16,7 @@
     "draft-js": "^0.11.7",
     "fbjs": "^3.0.5",
     "lexical": "^0.32.1",
+    "lucide-react": "^0.525.0",
     "pdfjs-dist": "^5.3.31",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",

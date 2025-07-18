@@ -13,6 +13,7 @@ function GrammarSidebar({ inputText, setInputText }) {
   const [grammarMistakes, setGrammarMistakes] = useState([]);
   const [tone, setTone] = useState("");
   const [level, setLevel] = useState("");
+  const [correctedText, setCorrectedText] = useState("");
   const [documentTone, setDocumentTone] = useState({});
 
   useEffect(() => {
@@ -27,13 +28,13 @@ function GrammarSidebar({ inputText, setInputText }) {
           .then((response) => {
             const result = response.data;
             const analysis = result.results && result.results[0] ? result.results[0] : {};
-            console.log(result)
-
-            setReadability(result.readability || { readability_percentage: 0, level: "" });
-            setErrorTypes(result.analysis_summary?.error_types || []);
-            setGrammarMistakes(result.errors || []);
-            setLevel(result.readability?.level || "");
-            setDocumentTone(result.tone_suggestions || {});
+            console.log(analysis+"wefwe");
+            setCorrectedText(analysis.corrected_text || "");
+            setReadability(analysis.readability || { readability_percentage: 0, level: "" });
+            setErrorTypes(analysis.analysis_summary?.error_types || []);
+            setGrammarMistakes(analysis.errors || []);
+            setLevel(analysis.readability?.level || "");
+            setDocumentTone(analysis.tone_suggestions || {});
           })
           .catch((err) => {
             console.error(err);
@@ -60,6 +61,15 @@ function GrammarSidebar({ inputText, setInputText }) {
       alert("No suggestion available for the selected tone.");
     }
   };
+
+  const correct = () => {
+  if (correctedText && correctedText.trim() !== "") {
+    console.log("Applying corrected grammar text");
+    setInputText(correctedText);
+  } else {
+    alert("No grammar correction suggestion available.");
+  }
+};
 
   return (
     <div className="w-96 bg-white border-l border-gray-200 flex flex-col">
@@ -139,13 +149,6 @@ function GrammarSidebar({ inputText, setInputText }) {
             <option value="friendly">Friendly</option>
             <option value="persuasive">Persuasive</option>
           </select>
-
-          {/* Optional: Preview selected tone (uncomment below to use preview feature) */}
-          {/* {tone && documentTone[tone.toLowerCase()] && (
-            <div className="mt-2 p-2 bg-gray-100 border rounded text-xs text-gray-700">
-              <strong>Preview:</strong> {documentTone[tone.toLowerCase()]}
-            </div>
-          )} */}
         </div>
 
         {/* Analysis Summary */}
@@ -175,7 +178,7 @@ function GrammarSidebar({ inputText, setInputText }) {
         </div>
       </div>
 
-      {/* Apply Button */}
+      {/* Apply All Suggestions */}
       <div className="p-4 border-t border-gray-200">
         <button
           onClick={changeTone}
@@ -183,6 +186,17 @@ function GrammarSidebar({ inputText, setInputText }) {
         >
           <span className="material-icons mr-2 text-base">done</span>
           Apply All Suggestions
+        </button>
+      </div>
+
+      {/* Correct Button */}
+      <div className="p-4 border-t border-gray-200">
+        <button
+          onClick={correct}
+          className="bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium py-2 px-4 rounded-md w-full flex items-center justify-center"
+        >
+          <span className="material-icons mr-2 text-base">done</span>
+          Correct It
         </button>
       </div>
     </div>

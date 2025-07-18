@@ -124,7 +124,7 @@ const SignupPage = () => {
             className="btn btn-primary"
             onClick={() => {
               setShowSuccess(false);
-              navigate('/login');
+              ('/login');
             }}
           >
             Continue

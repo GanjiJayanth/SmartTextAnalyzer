@@ -2,11 +2,14 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./UploadFileSide.css";
+import SmartTextAnalyzerLoading from "../../assets/Loding";
+
 
 function UploadFileSide({ setPdfFile }) {
   const fileInputRef = useRef(null);
   const [fileName, setFileName] = useState(null);
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -16,7 +19,7 @@ function UploadFileSide({ setPdfFile }) {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+      const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
       if (fileExtension !== "pdf") {
         alert("Only PDF files are allowed.");
         return;
@@ -38,6 +41,7 @@ function UploadFileSide({ setPdfFile }) {
     formData.append("file", file);
 
     try {
+      setLoading(true); // Show loader
       const response = await axios.post("http://127.0.0.1:4000/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -49,11 +53,16 @@ function UploadFileSide({ setPdfFile }) {
     } catch (error) {
       console.error("Upload failed:", error);
       alert("Upload failed. Please try again.");
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
   return (
     <div className="upload-container">
+      {/* Loader */}
+      <SmartTextAnalyzerLoading isLoading={loading} />
+
       <div className="layout-content-container">
         <div className="header-section">
           <div className="header-text">
@@ -87,7 +96,10 @@ function UploadFileSide({ setPdfFile }) {
 
             {fileName && <p className="file-selected">{fileName} selected</p>}
 
-            <button onClick={handleContinue} className="upload-button btn-primary">
+            <button
+              onClick={handleContinue}
+              className="upload-button btn-primary"
+            >
               Upload & Continue
             </button>
           </div>
