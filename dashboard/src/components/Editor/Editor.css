@@ -1,0 +1,120 @@
+/* === Editor Container Root === */
+.RichEditor-root {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: "Inter", "Noto Sans", sans-serif;
+  font-size: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+  transition: box-shadow 0.3s ease;
+  min-height: 400px;
+}
+
+.RichEditor-root:focus-within {
+  box-shadow: 0 0 0 3px rgba(12, 127, 242, 0.2);
+}
+
+/* === Toolbar Wrapper === */
+.RichEditor-controls-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* === Toolbar Buttons === */
+.RichEditor-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.RichEditor-styleButton {
+  background-color: var(--secondary-color);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 13px;
+  transition: all 0.2s ease-in-out;
+}
+
+.RichEditor-styleButton:hover {
+  background-color: #dceeff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.RichEditor-activeButton {
+  background-color: rgba(12, 127, 242, 0.1);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* === Editor Text Area === */
+.RichEditor-editor {
+  border-top: 1px solid var(--border-color);
+  cursor: text;
+  padding-top: 12px;
+  font-size: 16px;
+  min-height: 200px;
+  line-height: 1.6;
+}
+
+/* Placeholder and Text Content */
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+  padding: 12px 0;
+  color: var(--text-secondary);
+}
+
+/* Hide placeholder */
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+/* === Code Block Styling === */
+.public-DraftStyleDefault-pre {
+  background-color: #f4f4f4;
+  font-family: "Inconsolata", "Menlo", "Consolas", monospace;
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+/* === Blockquote Styling === */
+.RichEditor-blockquote {
+  border-left: 4px solid var(--border-color);
+  color: var(--text-secondary);
+  font-style: italic;
+  background-color: var(--secondary-color);
+  padding: 12px 20px;
+  margin: 12px 0;
+}
+
+.tone-meter-segment {
+  height: 8px;
+  flex-grow: 1;
+}
+.tone-meter-segment.active {
+  opacity: 1;
+}
+.tone-meter-segment.inactive {
+  opacity: 0.3;
+}
+
+.readability-bar-good {
+  background-color: var(--success-color);
+}
+.readability-bar-medium {
+  background-color: var(--warning-color);
+}
+.readability-bar-poor {
+  background-color: var(--danger-color);
+}

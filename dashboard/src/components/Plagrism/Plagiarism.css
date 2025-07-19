@@ -1,0 +1,71 @@
+.btn-primary {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #2563eb; /* blue-600 */
+  border-radius: 0.375rem; /* rounded-md */
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8; /* blue-700 */
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 2px #3b82f6; /* blue-500 ring */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.btn-inactive {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151; /* gray-700 */
+  background-color: #f3f4f6; /* gray-100 */
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-inactive:hover {
+  background-color: #e5e7eb; /* gray-200 */
+}
+
+.btn-active {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #2563eb; /* blue-600 */
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-active:hover {
+  background-color: #1d4ed8; /* blue-700 */
+}
+
+.checkbox {
+  height: 1rem;
+  width: 1rem;
+  accent-color: #2563eb; /* blue-600 */
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.checkbox:focus {
+  box-shadow: 0 0 0 2px #3b82f6; /* blue-500 */
+}
+
+.checkbox-label {
+  font-size: 0.875rem;
+  color: #374151; /* gray-700 */
+}

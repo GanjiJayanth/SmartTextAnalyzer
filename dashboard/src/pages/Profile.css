@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+}
+
+.profile-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 24px;
+  color: #9ca3af;
+  margin-left: 8px;
+}
+
+.icon-sm {
+  font-size: 18px;
+  color: #9ca3af;
+  vertical-align: middle;
+}
+
+.profile-section {
+  margin-bottom: 2rem;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.label {
+  width: 100%;
+  max-width: 200px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.value {
+  flex: 1;
+  font-size: 15px;
+  color: #111827;
+}
+
+.action {
+  min-width: 80px;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.subtext {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.linked-account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.linked-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+}
+
+.custom-select {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  appearance: none;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-note {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}

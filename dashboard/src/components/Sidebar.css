@@ -1,0 +1,42 @@
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga";
+}
+
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 1rem;
+  right: -16px;
+  z-index: 10;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  padding: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+.sidebar-toggle-btn:hover {
+  background: #d1d5db;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #d1d5db; /* Tailwind gray-300 */
+}
