@@ -1,6 +1,7 @@
 from utils.chromavecdb import get_embed 
-from langchain_chroma import Chroma  # NEW import
 from utils.llmresponder import get_response_from_gemini
+from langchain_community.vectorstores import Chroma
+
 
 CHROMA_PATH = "./chroma_db" 
 
